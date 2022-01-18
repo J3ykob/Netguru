@@ -1,11 +1,11 @@
 const db = require('../__mocks__/nedb');
 const {addMovie} = require('../__mocks__/movies')
-const {MovieFactory} = require('../movies');
+const {MovieFactory} = require('../src/movies');
 const movies = new MovieFactory(db);
 
 describe('Movies service', ()=>{
     it('Validate generating date range', () => {
-        const range = movies._dateRange();
+        const range = movies._getDateRange();
         const today = new Date()
 
         expect(range.highkey.getMonth() === today.getMonth() + 1).toBe(true);
@@ -27,11 +27,4 @@ describe('Movies service', ()=>{
 
         expect(result).toEqual(expectedOutput);
     })
-
-    // it('Test exception handling: User uploading too many movies', async () => {
-    //     const user = {userId: '123', role: 'basic'};
-    //     const title = 'Matrix';
-
-    //     expect(()=>addMovie(title, user)).toThrow(Error);
-    // })
 });

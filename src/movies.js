@@ -6,7 +6,7 @@ class MovieFactory {
     constructor(database){
         this._db = database;
     }
-    _dateRange(){
+    _getDateRange(){
         let today = new Date();
         let lowkey = new Date(today.getFullYear(), today.getMonth(), 1);
         let highkey = new Date(today.getFullYear(), today.getMonth() + 1, 1);
@@ -28,7 +28,7 @@ class MovieFactory {
         });
     }
     async addMovie(title, user){
-        const range = dateRange();
+        const range = _getDateRange();
         const query = {
             userId: user.userId,
             createdAt: {

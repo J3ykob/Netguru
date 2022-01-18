@@ -1,4 +1,4 @@
-const {AuthFactory} = require('../auth');
+const {AuthFactory} = require('../src/auth');
 const auth = new AuthFactory("secret");
 
 
@@ -16,3 +16,4 @@ describe('Authorization Service', ()=>{
         expect(newRequest.user.name).toBe('Premium Jim');
     })
 })
+
