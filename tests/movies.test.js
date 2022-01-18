@@ -1,7 +1,16 @@
-const db = require('../__mocks__/nedb');
-const {addMovie} = require('../__mocks__/movies')
-const {MovieFactory} = require('../src/movies');
-const movies = new MovieFactory(db);
+const {mockdb} = require('../__mocks__/databse');
+// jest.mock("axios");
+
+jest.mock('../src/database', () => {
+    return {
+        getDb: () => mockdb()
+    };
+})
+
+const {MovieFactory} = require('../src/services/movies');
+const { default: axios } = require('axios');
+const movies = new MovieFactory();
+
 
 describe('Movies service', ()=>{
     it('Validate generating date range', () => {
@@ -13,17 +22,30 @@ describe('Movies service', ()=>{
     })
 
     it('Validate movie upload', async () => {
+
+        axios.get = jest.fn().mockImplementation(() => {
+            return Promise.resolve({
+                data: {
+                    "Title": title,
+                    "Year": "1999",
+                    "Genre": "Action, Adventure, Sci-Fi",
+                    "Director": "The Wachowski Brothers",
+                }
+            })
+        });
+
         const user = {userId: '123', role: 'premium'};
         const title = 'Matrix';
 
         const expectedOutput = {
-            userId: '123',
-            "Title": title,
-            "Year": "1999",
-            "Genre": "Action, Adventure, Sci-Fi",
-            "Director": "The Wachowski Brothers",
+            userId: user.userId,
+            "title": title,
+            "year": "1999",
+            "genre": "Action, Adventure, Sci-Fi",
+            "director": "The Wachowski Brothers",
+            createdAt: expect.any(Date)
         }
-        const result = await addMovie(title, user);
+        const result = await movies.addMovie(title, user);
 
         expect(result).toEqual(expectedOutput);
     })

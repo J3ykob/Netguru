@@ -1,7 +1,7 @@
 const db = () => {
     return {
-        find: () => {
-            return Promise.resolve([
+        find: (query, callback) => {
+            const movies = [
                 {
                     "id": 123,
                     "title": "Elko",
@@ -20,22 +20,13 @@ const db = () => {
                     "createdAt": "2022-01-17T11:41:24.795Z",
                     "_id": "XqF1rIUbp9iBM3j2"
                 },
-              ]);
+            ]
+            callback(null, movies);
         },
-        insert: () => {
-            return Promise.resolve({
-                
-                "id": 123,
-                "title": "StART",
-                "year": "2010",
-                "genre": "Animation, Short",
-                "director": "Goran Gomaz",
-                "createdAt": "2022-01-17T11:52:02.932Z",
-                "_id": "2Lyrupm7WsS1XW4T"
-                
-            });
+        insert: (toInsert, callback) => {
+            callback(null, toInsert);
         }
     }
 }
 
-exports.db = db;
+exports.mockdb = db;

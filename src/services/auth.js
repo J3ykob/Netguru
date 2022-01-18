@@ -20,8 +20,13 @@ const users = [
 class AuthError extends Error {}
 
 class AuthFactory {
-  constructor(secret){
-    this._secret = secret
+  constructor(){
+    const { JWT_SECRET } = process.env;
+
+    if (!JWT_SECRET) {
+        throw new Error("Missing JWT_SECRET env var. Set it and restart the server");
+    }
+    this._secret = JWT_SECRET;
   }
   generateToken(username, password){
     const user = users.find((u) => u.username === username);
@@ -43,21 +48,6 @@ class AuthFactory {
         expiresIn: 30 * 60,
       }
     );
-  }
-
-  validateToken(req, res, next){
-    const authHeader = req.get("Authorization");
-  
-    if (!authHeader) throw new AuthError("missing authorization header");
-    
-    const [scheme, token] = authHeader.split(" ");
-    try{
-      const decoded = jwt.verify(token, this._secret);
-      req.user = decoded;
-      next();
-    }catch{
-      throw new AuthError("invalid token");
-    }
   }
 }
 

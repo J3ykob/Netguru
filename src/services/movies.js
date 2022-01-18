@@ -1,10 +1,11 @@
 const axios = require('axios');
+const {getDb} = require('../database');
 
 class MovieFetchError extends Error {}
 
 class MovieFactory {
-    constructor(database){
-        this._db = database;
+    constructor(){
+        this._db = getDb();
     }
     _getDateRange(){
         let today = new Date();
@@ -16,19 +17,23 @@ class MovieFactory {
         }
     }
     async _getMovies(query){
-        this._db.find(query, (err, docs) => {
-            if(err) throw new MovieFetchError(err.message);
-            return Promise.resolve(docs);
+        return new Promise((resolve)=>{
+            this._db.find(query, (err, docs) => {
+                if(err) throw new MovieFetchError(err.message);
+                resolve(docs)
+            }); 
         });
     }
     async _insertMovie(movie){
-        this._db.insert(movie, (err, newDoc) => {
-            if(err) throw new MovieFetchError(err.message);
-            return Promise.resolve(newDoc);
+        return new Promise((resolve)=>{
+            this._db.insert(movie, (err, newDoc) => {
+                if(err) throw new MovieFetchError(err.message);
+                resolve(newDoc);
+            });
         });
     }
     async addMovie(title, user){
-        const range = _getDateRange();
+        const range = this._getDateRange();
         const query = {
             userId: user.userId,
             createdAt: {
@@ -62,6 +67,9 @@ class MovieFactory {
     
         return await this._insertMovie(movie);
     
+    }
+    async findMovie(userId){
+        return await this._getMovies({userId: userId})
     }
 }
 
