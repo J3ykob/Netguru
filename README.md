@@ -1,3 +1,5 @@
+[![Node.js CI](https://github.com/J3ykob/Netguru/actions/workflows/node.js.yml/badge.svg)](https://github.com/J3ykob/Netguru/actions/workflows/node.js.yml)
+
 # Node.js recruitment task
 
 We'd like you to build a simple Movie API. It should provide two endpoints:
