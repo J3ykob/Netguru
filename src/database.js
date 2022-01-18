@@ -7,7 +7,7 @@ let db = null;
 */
 
 const initDb = async () => {
-  db = new Datastore({ filename: './movies.db', autoload: true });
+  db = new Datastore({ filename: './src/movies.db', autoload: true });
   return;
 }
 
