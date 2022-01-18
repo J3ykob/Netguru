@@ -1,5 +1,7 @@
 # Netguru
 
+[![Node.js CI](https://github.com/J3ykob/Netguru/actions/workflows/node.js.yml/badge.svg)](https://github.com/J3ykob/Netguru/actions/workflows/node.js.yml)
+
 ## API Documentation
 
 ### User authorization
