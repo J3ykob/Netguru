@@ -1,4 +1,9 @@
 const jwt = require("jsonwebtoken");
+const { JWT_SECRET } = process.env;
+
+    if (!JWT_SECRET) {
+        throw new Error("Missing JWT_SECRET env var. Set it and restart the server");
+    }
 
 const users = [
   {
@@ -21,11 +26,6 @@ class AuthError extends Error {}
 
 class AuthFactory {
   constructor(){
-    const { JWT_SECRET } = process.env;
-
-    if (!JWT_SECRET) {
-        throw new Error("Missing JWT_SECRET env var. Set it and restart the server");
-    }
     this._secret = JWT_SECRET;
   }
   generateToken(username, password){

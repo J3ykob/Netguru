@@ -68,8 +68,8 @@ class MovieFactory {
         return await this._insertMovie(movie);
     
     }
-    async findMovie(userId){
-        return await this._getMovies({userId: userId})
+    async findMovie(user){
+        return await this._getMovies({userId: user.userId})
     }
 }
 

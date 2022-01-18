@@ -1,3 +1,6 @@
 {"id":123,"title":"StART","year":"2010","genre":"Animation, Short","director":"Goran Gomaz","createdAt":{"$$date":1642420322932},"_id":"2Lyrupm7WsS1XW4T"}
+{"userId":434,"title":"Gun","year":"2010","genre":"Action, Crime, Thriller","director":"Jessy Terrero","createdAt":{"$$date":1642532257536},"_id":"DNKHddgg9qj3Oif7"}
 {"id":123,"title":"Git","year":"2004","genre":"Drama, Romance","director":"Il-gon Song","createdAt":{"$$date":1642421324934},"_id":"MVkip4FV8z6d2gyg"}
+{"userId":434,"title":"Matrix","year":"1993","genre":"Action, Drama, Fantasy","director":"N/A","createdAt":{"$$date":1642532235372},"_id":"W1gnVAJpajodpOul"}
 {"id":123,"title":"Mission: Impossible - Ghost Protocol","year":"2011","genre":"Action, Adventure, Thriller","director":"Brad Bird","createdAt":{"$$date":1642419684795},"_id":"XqF1rIUbp9iBM3j2"}
+{"userId":434,"title":"Win Win","year":"2011","genre":"Comedy, Drama, Sport","director":"Tom McCarthy","createdAt":{"$$date":1642532399663},"_id":"gw6krq52DxI9TrjM"}
