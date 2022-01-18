@@ -23,6 +23,6 @@ app.use((error, _, res, __) => {
   return res.status(500).json({ error: "internal server error" });
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`auth svc running at port ${process.env.PORT}`);
+app.listen(process.env.APP_PORT, () => {
+  console.log(`auth svc running at port ${process.env.APP_PORT}`);
 });
