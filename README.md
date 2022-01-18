@@ -112,13 +112,17 @@ Used to get all the movies uploaded by the currently logged-in user.
 `missing authorization header` -||-
 
 
-## Run the API locally
+## Run the API service locally
 
 1. Clone this repository
-1. Run from root dir
+2. Run from root dir
 
 ```
-docker-compose up -d
+npm install
+```
+
+```
+JWT_SECRET=secret APP_PORT=8080 docker-compose up -d
 ```
 
 To stop the authorization service run
